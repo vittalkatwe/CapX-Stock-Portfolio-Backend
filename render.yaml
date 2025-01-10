@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: capx-stock-portfolio-backend
+    env: docker
+    buildCommand: "docker build -t capx-stock-portfolio-backend ."
+    startCommand: "docker run -p 8080:8080 capx-stock-portfolio-backend"
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:mysql://my-database-host.onrender.com:3306/stockportfolio?user=root&password=8431465059
