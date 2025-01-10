@@ -1,0 +1,10 @@
+com\stockportfolio\config\WebConfig.class
+com\stockportfolio\StockPortfolioApplication.class
+com\stockportfolio\config\SecurityConfig.class
+com\stockportfolio\repository\StockRepository.class
+com\stockportfolio\service\StockService.class
+com\stockportfolio\dto\StockDTO.class
+com\stockportfolio\model\Stock.class
+com\stockportfolio\model\User.class
+com\stockportfolio\controller\StockController.class
+com\stockportfolio\repository\UserRepository.class
