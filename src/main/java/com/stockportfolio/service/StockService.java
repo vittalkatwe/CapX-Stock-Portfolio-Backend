@@ -6,30 +6,50 @@ import com.stockportfolio.repository.StockRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
 public class StockService {
+
+    @Autowired
+    @Qualifier("stockMongoRepository")
     private final StockRepository stockRepository;
+    private static final Logger logger = LoggerFactory.getLogger(StockService.class);
+
     
     @Autowired
     public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
+
+    public class StockNotFoundException extends RuntimeException {
+        public StockNotFoundException(String message) {
+            super(message);
+        }
+    }
+    
     
     public List<StockDTO> getAllStocks() {
-        return stockRepository.findAllByOrderByLastUpdatedDesc()
+        return stockRepository.findAll()
             .stream()
             .map(this::convertToDTO)
             .collect(Collectors.toList());
     }
     
     public StockDTO getStock(String id) {
+        logger.info("Fetching stock with ID: {}", id);
         return stockRepository.findById(id)
             .map(this::convertToDTO)
-            .orElseThrow(() -> new RuntimeException("Stock not found"));
+            .orElseThrow(() -> new StockNotFoundException("Stock not found with ID: " + id));
     }
+
+    
     
     @Transactional
     public StockDTO createStock(StockDTO stockDTO) {
@@ -37,6 +57,8 @@ public class StockService {
         Stock savedStock = stockRepository.save(stock);
         return convertToDTO(savedStock);
     }
+
+    
     
     @Transactional
     public StockDTO updateStock(String id, StockDTO stockDTO) {

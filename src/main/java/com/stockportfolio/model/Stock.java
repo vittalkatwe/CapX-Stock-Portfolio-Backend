@@ -1,33 +1,24 @@
 package com.stockportfolio.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "stocks")
+@Document(collection = "stocks")
 public class Stock {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    
-    @Column(nullable = false)
     private String name;
-    
-    @Column(nullable = false)
     private String ticker;
-    
-    @Column(nullable = false)
     private Integer quantity;
-    
-    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal buyPrice;
-    
-    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal currentPrice;
-    
-    @Column(nullable = false)
     private LocalDateTime lastUpdated;
+
     
     // Getters
     public String getId() { return id; }

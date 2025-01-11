@@ -5,6 +5,5 @@ com\stockportfolio\repository\StockRepository.class
 com\stockportfolio\service\StockService.class
 com\stockportfolio\dto\StockDTO.class
 com\stockportfolio\model\Stock.class
-com\stockportfolio\model\User.class
 com\stockportfolio\controller\StockController.class
-com\stockportfolio\repository\UserRepository.class
+com\stockportfolio\service\StockService$StockNotFoundException.class

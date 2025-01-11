@@ -6,4 +6,4 @@ services:
     startCommand: "docker run -p 8080:8080 capx-stock-portfolio-backend"
     envVars:
       - key: DATABASE_URL
-        value: jdbc:mysql://my-database-host.onrender.com:3306/stockportfolio?user=root&password=8431465059
+        value: mongodb+srv://vittalkatwe:vittalkatwe@cautious.rh2qklo.mongodb.net/stockportfolio?retryWrites=true&w=majority
