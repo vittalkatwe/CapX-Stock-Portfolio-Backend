@@ -28,4 +28,4 @@ RUN mvn package -DskipTests
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "-jar", "target/stock-portfolio-backend.jar"]
+CMD ["java", "-jar", "target/stock-portfolio-backend-0.0.1-SNAPSHOT.jar"]
